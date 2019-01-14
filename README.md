@@ -1,3 +1,5 @@
 # Calculus Homework
 
-2018-2019
+## Tips
+
+- nbviewer not updating the notebook? Append `?flush_cache=true` to the URL.
