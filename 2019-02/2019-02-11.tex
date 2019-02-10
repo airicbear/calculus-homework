@@ -1,0 +1,277 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+ 
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+\newcommand{\assignment}{Pg. 409 \#1-58 eoo, 67, 69, 73, 75, 79}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-02-11}
+\newcommand{\details}{\textbf{\\\name \\\duedate \\\assignment}}
+ 
+\begin{document}
+
+\details
+
+\begin{problem}{1}
+$\displaystyle\int x^6 \, dx$
+\begin{align}
+&= \dfrac{x^7}{7} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{5}
+$\displaystyle\int x^{1/4} \, dx$
+\begin{align}
+&= \dfrac{x^{5/4}}{5/4} + C \\
+&= \dfrac{4}{5} x^{5/4} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{9}
+$\displaystyle\int (2t^2 + 5t - 3) \, dt$
+\begin{align}
+&= \int 2t^2 \, dt + \int 5t \, dt - \int 3 \, dt \\ 
+&= 2 \int t^2 \, dt + 5 \int t \, dt - 3t + C \\
+&= 2 \cdot \dfrac{t^3}{3} + 5 \cdot \dfrac{t^2}{2} - 3t + C \\
+&= \dfrac{2}{3}t^3 + \dfrac{5}{2}t^2 - 3t + C
+\end{align}
+\end{problem}
+
+\begin{problem}{13}
+$\displaystyle\int \sqrt[\scriptstyle 3]{x} \, dx$
+\begin{align}
+&= \int x^{1/3} \, dx \\
+&= \dfrac{x^{4/3}}{4/3} + C \\
+&= \dfrac{3}{4} x^{4/3} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{17}
+$\displaystyle\int \dfrac{dx}{x^4}$
+\begin{align}
+&=  \int x^{-4} \, dx \\
+&=  -\dfrac{1}{3} x^{-3} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{21}
+$\displaystyle\int \left(\dfrac{3}{x} + \dfrac{5}{x^2}\right) \, dx$
+\begin{align}
+&= \int \dfrac{3}{x} \, dx + \int \dfrac{5}{x^2} \, dx \\
+&= 3 \int \dfrac{1}{x} \, dx + 5 \int x^{-2} \, dx \\
+&= 3 \ln{\left|x\right|} - 5x^{-1} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{25}
+$\displaystyle\int 2e^{2x} \, dx$
+\begin{align}
+&= 2 \int e^{2x} \, dx \\
+&= 2 \cdot \dfrac{1}{2} e^{2x} + C \\
+&= e^{2x} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{29}
+$\displaystyle\int e^{7x} \, dx$
+\begin{align}
+&= \dfrac{1}{7} e^{7x} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{33}
+$\displaystyle\int 6e^{8x} \, dx$
+\begin{align}
+&= 6 \int e^{8x} \, dx \\
+&= \dfrac{6}{8} e^{8x} + C \\
+&= \dfrac{3}{4} e^{8x} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{37}
+$\displaystyle\int (5x^2 - 2e^{7x}) \, dx$
+\begin{align}
+&= \int 5x^2 \, dx - \int 2e^{7x} \, dx \\
+&= 5 \int x^2 \, d - 2 \int e^{7x} \, dx \\
+&= 5 \cdot \dfrac{1}{3} x^3 - 2 \cdot \dfrac{1}{7} e^{7x} + C \\
+&= \dfrac{5}{3} x^3 - \dfrac{2}{7} e^{7x} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{41}
+$\displaystyle\int (3x + 2)^2 \, dx$
+\begin{align}
+&= \int (3x + 2)(3x + 2) \, dx \\
+&= \int 9x^2 + 6x + 6x + 4 \, dx \\
+&= \int 9x^2 \, dx + \int 12x \, dx + \int 4 \, dx \\
+&= 9 \int x^2 \, dx + 12 \int x \, dx + 4x + C \\
+&= 9 \cdot \dfrac{1}{3} x^3 + 12 \cdot \dfrac{1}{2} x^2 + 4x + C \\
+&= 3x^3 + 6x^2 + 4x + C
+\end{align}
+\end{problem}
+
+\begin{problem}{45}
+$\displaystyle\int \left(\dfrac{7}{\sqrt{x}} - \dfrac{2}{3} e^{5x} - \dfrac{8}{x}\right)$
+\begin{align}
+&= \int \dfrac{7}{\sqrt{x}} \, dx - \int \dfrac{2}{3} e^{5x} \, dx - \int \dfrac{8}{x} \, dx \\
+&= 7 \int x^{-1/2} \, dx - \dfrac{2}{3} \int e^{5x} \, dx - 8 \int \dfrac{1}{x} \, dx \\
+&= 7 \cdot 2\sqrt{x} - \dfrac{2}{3} \cdot \dfrac{1}{5} e^{5x} - 8 \ln{|x|} + C \\
+&= 14\sqrt{x} - \dfrac{2}{15} e^{5x} - 8 \ln{|x|} + C 
+\end{align}
+\end{problem}
+
+\begin{problem}{49}
+$f'(x) = x^2 - 4, \quad f(0) = 7$
+\begin{align}
+f(x) &= \int x^2 - 4 \, dx \\
+&= \int x^2 \, dx - \int 4 \, dx \\
+&= \dfrac{1}{3} x^3 - 4x + C \\
+\dfrac{1}{3} (0)^3 + C &= 7 \\
+C &= 7 \\
+f(x) &= \dfrac{1}{3} x^3 - 4x + 7
+\end{align}
+\end{problem}
+
+\begin{problem}{53}
+$f'(x) = 3x^2 - 5x + 1, \quad f(1) = \dfrac{7}{2}$
+\begin{align}
+f(x) &= \int 3x^2 - 5x + 1 \, dx \\
+&= \int 3x^2 \, dx - \int 5x \, dx + \int 1 \, dx \\
+&= 3 \int x^2 \, dx - 5 \int x \, dx + x + C \\
+&= 3 \cdot \dfrac{1}{3} x^3 - 5 \cdot \dfrac{1}{2} x^2 + x + C \\
+&= x^3 - \dfrac{5}{2} x^2 + x + C \\
+(1)^3 - \dfrac{5}{2} (1)^2 + (1) + C &= \dfrac{7}{2} \\
+C &= \dfrac{7}{2} - 1 + \dfrac{5}{2} - 1 \\
+C &= 4 \\
+f(x) &= x^3 - \dfrac{5}{2} x^2 + x + 4
+\end{align}
+\end{problem}
+
+\begin{problem}{57}
+$f'(x) = \dfrac{4}{\sqrt{x}}, \quad f(1) = -5$
+\begin{align}
+f(x) &= \int \dfrac{4}{\sqrt{x}} \, dx \\
+&= 4 \int x^{-1/2} \, dx \\
+&= 4 \cdot 2 \sqrt{x} + C \\
+&= 8 \sqrt{x} + C \\
+8 \sqrt{(1)} + C &= -5 \\
+C &= -5 - 8 \\
+C &= -13 \\
+f(x) &= 8 \sqrt{x} - 13
+\end{align}
+\end{problem}
+
+\newpage
+
+\begin{problem}{67}
+$\dfrac{dE}{dt} = 30 - 10t$
+\end{problem}
+
+\begin{problem}{a)}
+$E(2) = 72$
+\begin{align}
+E(t) &= \int 30 - 10t \, dt \\
+&= \int 30 \, dt - \int 10t \, dt \\
+&= 30t - 10 \int t \, dt + C \\
+&= 30t - 10 \cdot \dfrac{1}{2} t^2 + C \\
+&= 30t - 5t^2 + C \\
+30(2) - 5(2)^2 + C &= 72 \\
+60 - 20 + C &= 72 \\
+C &= 72 - 40 \\
+C &= 32 \\
+E(t) &= 30t - 5t^2 + 32 
+\end{align}
+\end{problem}
+
+\begin{problem}{b)}
+Find $E(3)$ and $E(5)$, where $E$ is a percentage.
+\begin{align}
+E(3) &= 30(3) - 5(3)^2 + 32 \\
+&= 77\% \\
+E(5) &= 30(5) - 5(5)^2 + 32 \\
+&= 57\%
+\end{align}
+\end{problem}
+
+\begin{problem}{69}
+$I'(t) = 3.389e^{0.1049t}$
+\end{problem}
+
+\begin{problem}{a)}
+$I(0) = 0$
+\begin{align}
+I(t) &= \int 3.389e^{0.1049t} \, dt \\
+&= 3.389 \int e^{0.1049t} \, dt \\
+&= 3.389 \cdot \dfrac{1}{0.1049} e^{0.1049t} + C \\
+&\approx 32.31e^{0.1049t} + C \\
+32.31e^{0.1049(0)} + C &\approx 0 \\
+C &\approx 32.31 \\
+I(t) &\approx 32.31e^{0.1049t} - 32.31
+\end{align}
+\end{problem}
+
+\begin{problem}{b)}
+$I(27)$
+\begin{align}
+&= 32.31e^{0.1049(27)} - 32.31 \\
+&\approx 516 \text{ people}
+\end{align}
+\end{problem}
+
+\begin{problem}{c)}
+$I(34)$
+\begin{align}
+&= 32.31e^{0.1049(34)} - 32.31 \\
+&\approx 1111 \text{ people}
+\end{align}
+\end{problem}
+
+\begin{problem}{d)}
+$I(34) - I(34 - 7)$
+\begin{align}
+&\approx 1111 - 32.31e^{0.1049(34 - 7)} - 32.31 \\
+&\approx 1111 - 516 \\
+&\approx 595 \text{ people}
+\end{align}
+\end{problem}
+
+\begin{problem}{73}
+$\displaystyle\int (5t + 4)^2 t^4 \, dt$
+\begin{align}
+&= \int (5t + 4)(5t + 4)t^4 \, dt \\
+&= \int (25t^2 + 20t + 20t + 16)t^4 \, dt \\
+&= \int 25t^6 + 40t^5 + 16t^4 \, dt \\
+&= \int 25t^6 \, dt + \int 40t^5 \, dt + \int 16t^4 \, dt \\
+&= 25 \int t^6 \, dt + 40 \int t^5 \, dt + 16 \int t^4 \, dt \\
+&= 25 \cdot \dfrac{1}{7} t^7 + 40 \cdot \dfrac{1}{6} t^6 + 16 \cdot \dfrac{1}{5} t^5 + C \\
+&= \dfrac{25}{7} t^7 + \dfrac{20}{3} t^6 + \dfrac{16}{5} t^5 + C
+\end{align}
+\end{problem}
+
+\begin{problem}{75}
+$\displaystyle\int (1 - t) \sqrt{t} \, dt$
+\begin{align}
+&= \int \sqrt{t} - t \sqrt{t} \, dt \\
+&= \int t^{1/2} \, dt - \int t^{3/2} \, dt \\
+&= \dfrac{2}{3} t^{3/2} - \dfrac{2}{5} t^{5/2} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{79}
+$\displaystyle\int \dfrac{1}{\ln{10}} \dfrac{dx}{x}$
+\begin{align}
+&= \dfrac{1}{\ln{10}} \int \dfrac{1}{x} \, dx \\
+&= \dfrac{\ln{|x|}}{\ln{10}} + C, \text{ or } \log{x} + C
+\end{align}
+\end{problem}
+
+\end{document}
