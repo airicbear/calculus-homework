@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools}
+
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+\newcommand{\assignment}{Pg. 442 \#15, 31, 43-51 eoo, 63, 67, 69, 82, 87}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-03-15}
+\newcommand{\details}{\textbf{\\\name \\\duedate \\\assignment}}
+
+\newcommand{\plugin}[2]{\left(\left({#1}\right) - \left({#2}\right)\right)}
+
+\begin{document}
+
+\details
+
+\begin{problem}{15}
+$\displaystyle\int x^4 e^{x^5} ~ dx$
+\begin{align}
+u &= x^5 \\
+\frac{du}{dx} &= 5x^4 \\
+du &= 5x^4 ~ dx \\
+\frac{1}{5} ~ du &= x^4 ~ dx \\
+\int x^4 e^{x^5} &= \int e^u \cdot \frac{1}{5} ~ du \\
+&= \frac{1}{5} e^u + C \\
+&= \frac{1}{5} e^{x^5} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{31}
+$\displaystyle\int \frac{(\ln x)^2}{x} ~ dx$
+\begin{align}
+u &= \ln x \\
+\frac{du}{dx} &= \frac{1}{x} \\
+du &= \frac{1}{x} ~ dx \\
+\int \frac{(\ln x)^2}{x} ~ dx &= \int u^2 ~ du \\
+&= \frac{u^3}{3} + C \\
+&= \frac{(\ln x)^3}{3} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{43}
+$\displaystyle\int_0^1 2xe^{x^2} ~ dx$
+\begin{align}
+u &= x^2 \\
+\frac{du}{dx} &= 2x \\
+du &= 2x ~ dx \\
+\int_0^1 2xe^{x^2} ~ dx &= \int_0^1 e^u ~ du \\
+&= e^u ~ \bigg|_0^1 \\
+&= e^{x^2} ~ \bigg|_0^1 \\
+&= \plugin{e^{(1)^2}}{e^{(0)^2}} \\
+&= e - 1
+\end{align}
+\end{problem}
+
+\begin{problem}{47}
+$\displaystyle\int_0^4 \frac{dt}{1 + t}$
+\begin{align}
+u &= 1 + t \\
+\frac{du}{dt} &= 1 \\
+du &= dt \\
+\int_0^4 \frac{dt}{1 + t} &= \int_0^4 \frac{du}{u} \\
+&= \ln u ~ \bigg|_0^4 \\
+&= \ln{\left(1 + t\right)} ~ \bigg|_0^4 \\
+&= \plugin{\ln{\left(1 + (4)\right)}}{\ln{\left(1 + (0)\right)}} \\
+&= \ln 5
+\end{align}
+\end{problem}
+
+\begin{problem}{51}
+$\displaystyle\int_0^b e^{-x} ~ dx$
+\begin{align}
+&= -e^{-x} ~ \bigg|_0^b \\
+&= \plugin{-e^{-(b)}}{-e^{-(0)}} \\
+&= -e^{-b} + 1 \\
+&= 1 - e^{-b}
+\end{align}
+\end{problem}
+
+\begin{problem}{63}
+$R'(t) = 4000t, \quad V(t) = 200,000 - 25,000e^{0.1t}, \quad R(0) = 0$
+\begin{align}
+\shortintertext{a) Find P(t)}
+P(t) &= R(t) + V(t) - 250,000 \\
+&= 2000t^2 + 200,000 - 25,000e^{0.1t} - 250,000 \\
+&= 2000t^2 - 50,000 - 25,000e^{0.1t}
+\shortintertext{b) Find P(10)}
+P(10) &= 2000(10)^2 - 50,000 - 25,000e^{0.1(10)} \\
+&= \$82,042.95
+\end{align}
+\end{problem}
+
+\begin{problem}{69}
+$\displaystyle\int 5x \sqrt{1 - 4x^x} ~ dx$
+\begin{align}
+u &= 1 - 4x^2 \\
+\frac{du}{dx} &= -8x \\
+-\frac{5}{8} ~ du &= 5x ~ dx \\
+\int 5x \sqrt{1 - 4x^2} ~ dx &= \int -\frac{5}{8} \sqrt{u} ~ du \\
+&= -\frac{5}{8} \int \sqrt{u} ~ du \\
+&= -\frac{5}{8} \cdot \frac{2}{3} u^{3/2} + C \\
+&= -\frac{5}{12} (1 - 4x^2)^{3/2} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{82}
+$\displaystyle\int \frac{x^2 + 6x}{(x + 3)^2} ~ dx$
+\begin{align}
+u &= x^2 + 6x \\
+\frac{du}{dx} &= 2x + 6 \\
+du &= 2x + 6 ~ dx \\
+&= 2(x + 3) ~ dx \\
+\frac{du}{2} &= (x + 3) ~ dx \\
+\left(\frac{du}{2}\right)^{-2} &= (x + 3)^{-2} ~ dx \\
+\int \frac{x^2 + 6x}{(x + 3)^2} ~ dx &= \int u ~ \left(\frac{du}{2}\right)^{-2} \\
+\shortintertext{Try again.}
+u &= (x + 3)^2 \\
+\frac{du}{dx} &= 2(x + 3) \\
+du &= 2(x + 3) ~ dx \\
+\frac{du}{2} &= x + 3 ~ dx \\
+\frac{du}{2} + 3 &= x + 6 ~ dx \\
+\frac{x}{2} ~ du + 3 &= x^2 + 6x ~ dx \\
+\int \frac{x^2 + 6x}{(x + 3)^2} ~ dx &= \int \frac{1}{u} \cdot \frac{x}{2} ~ du + 3 \\
+&= \frac{1}{2} \int \frac{x}{u} ~ du + 3x
+\shortintertext{Give up.}
+&= -\frac{x^2+6x}{x+3}+2x+C
+\end{align}
+\end{problem}
+
+\begin{problem}{87}
+$\displaystyle\int \frac{e^x - e^{-x}}{e^x + e^{-x}} ~ dx$
+\begin{align}
+u &= e^x + e^{-x} \\
+\frac{du}{dx} &= e^x - e^{-x} \\
+\int \frac{e^x - e^{-x}}{e^x + e^{-x}} ~ dx &= \int \frac{1}{u} ~ du \\
+&= \ln{u} + C \\
+&= \ln{e^x + e^{-x}} + C
+\end{align}
+\end{problem}
+
+\end{document}
