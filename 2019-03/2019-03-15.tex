@@ -115,24 +115,14 @@ u &= 1 - 4x^2 \\
 \begin{problem}{82}
 $\displaystyle\int \frac{x^2 + 6x}{(x + 3)^2} ~ dx$
 \begin{align}
-u &= x^2 + 6x \\
-\frac{du}{dx} &= 2x + 6 \\
-du &= 2x + 6 ~ dx \\
-&= 2(x + 3) ~ dx \\
-\frac{du}{2} &= (x + 3) ~ dx \\
-\left(\frac{du}{2}\right)^{-2} &= (x + 3)^{-2} ~ dx \\
-\int \frac{x^2 + 6x}{(x + 3)^2} ~ dx &= \int u ~ \left(\frac{du}{2}\right)^{-2} \\
-\shortintertext{Try again.}
-u &= (x + 3)^2 \\
-\frac{du}{dx} &= 2(x + 3) \\
-du &= 2(x + 3) ~ dx \\
-\frac{du}{2} &= x + 3 ~ dx \\
-\frac{du}{2} + 3 &= x + 6 ~ dx \\
-\frac{x}{2} ~ du + 3 &= x^2 + 6x ~ dx \\
-\int \frac{x^2 + 6x}{(x + 3)^2} ~ dx &= \int \frac{1}{u} \cdot \frac{x}{2} ~ du + 3 \\
-&= \frac{1}{2} \int \frac{x}{u} ~ du + 3x
-\shortintertext{Give up.}
-&= -\frac{x^2+6x}{x+3}+2x+C
+&= \int \frac{x^2 + 6x + 9 - 9}{x^2 + 6x + 9} ~ dx \\
+&= \int \frac{x^2 + 6x + 9}{x^2 + 6x + 9} - \frac{9}{x^2 + 6x + 9} ~ dx \\
+&= \int 1 ~ dx - 9 \int \frac{1}{(x + 3^2)} ~ dx \\
+u &= x + 3 \\
+du &= dx \\
+\int \frac{x^2 + 6x}{(x + 3)^2} ~ dx &= x - 9 \int \frac{1}{u^2} ~ du \\
+&= x + 9 \frac{1}{u} + C \\
+&= x + \frac{9}{x + 3} + C
 \end{align}
 \end{problem}
 
