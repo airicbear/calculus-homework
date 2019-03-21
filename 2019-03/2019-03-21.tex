@@ -1,0 +1,200 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools}
+
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+% --------------------------------------------------
+% CUSTOM COMMANDS
+% -------------------------------------------------- 
+
+\newcommand{\assignment}{Pg. 456 \#15-29 odd, 32, 33-37 odd}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-03-19}
+\newcommand{\details}{\temtbf{\\\name \\\duedate \\\assignment}}
+
+\newcommand{\plugin}[2]{\left(\left({#1}\right) - \left({#2}\right)\right)}
+\newcommand{\setuv}[4]{
+\left[
+\begin{alignedat}{2}
+u &= #1 &\quad v &= #2 \\
+du &= #3 &\quad dv &= #4 \\
+\end{alignedat}
+\right]  = uv - \int v ~ du \\
+&= \intbp{#1}{#2}{#3}
+}
+\newcommand{\subu}[2]{
+\left[
+\begin{alignedat}{1}
+u &= #1 \\
+du &= #2 \\
+\end{alignedat}
+\right] 
+}
+\newcommand{\intbp}[3]{\left(#1\right) \left(#2\right) - \int \left(#2\right) \left(#3\right)}
+
+% --------------------------------------------------  
+% TABULAR INTEGRATION
+% -------------------------------------------------- 
+
+\usepackage{booktabs}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+
+\newcommand{\tikzmark}[1]{%
+    \tikz[overlay, remember picture, baseline] \node (#1) {};%
+}
+
+\newcommand*{\XShift}{0.5em}
+\newcommand*{\YShift}{0.5ex}
+
+\NewDocumentCommand{\DrawArrow}{s O{} m m m}{%
+    \begin{tikzpicture}[overlay,remember picture]
+        \draw[->, thick, Arrow Style, #2] 
+                ($(#3.west)+(\XShift,\YShift)$) -- 
+                ($(#4.east)+(-\XShift,\YShift)$)
+        node [midway,above] {#5};
+    \end{tikzpicture}%
+}
+
+\begin{document}
+
+\details
+
+\begin{problem}{15}
+$\displaystyle\int m^3 \ln m ~ dm$
+\begin{align}
+&= m^{3 + 1} \left[\frac{\ln m}{3 + 1} - \frac{1}{\left(3 + 1\right)^2}\right] + C \\
+&= m^4 \left[\frac{\ln m}{4} - \frac{1}{16}\right] + C \\
+&= \frac{m^4}{4} \left(\ln m\right) - \frac{m^4}{16} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{17}
+$\displaystyle\int \frac{dm}{\sqrt{m^2 + 7}}$
+\begin{align}
+&= \ln \left|m + \sqrt{m^2 + \sqrt{7}^2}\right| + C \\
+&= \ln \left|m + \sqrt{m^2 + 7}\right| + C \\
+\end{align}
+\end{problem}
+
+\begin{problem}{19}
+$\displaystyle\int \frac{10 ~ dm}{m\left(5 - 7m\right)^2}$
+\begin{align}
+&= 10 \left(\frac{1}{5 \left(5 - 7m\right)} + \frac{1}{5^2} \ln \left|\frac{m}{5 - 7m}\right| + C\right) \\
+&= \frac{2}{5 - 7m} + \frac{2}{5} \ln \left|\frac{m}{5 - 7m}\right| + C
+\end{align}
+\end{problem}
+
+\begin{problem}{21}
+$\displaystyle\int \frac{-5}{4m^2 - 1} ~ dm$
+\begin{align}
+&= -\frac{5}{4} \int \frac{1}{m^2 - \frac{1}{4}} ~ dm \\
+&= -\frac{5}{4}\left(\frac{1}{2\left(\frac{1}{2}\right)} \ln\left|\frac{m - \frac{1}{2}}{m + \frac{1}{2}}\right| + C\right) \\
+&= -\frac{5}{4} \ln\left|\frac{m - \frac{1}{2}}{m + \frac{1}{2}}\right| + C \\
+\end{align}
+\end{problem}
+
+\begin{problem}{23}
+$\displaystyle\int \sqrt{4m^2 + 16} ~ dm$
+\begin{align}
+&= 2 \int \sqrt{m^2 + 4} ~ dm \\
+&= 2 \left(\frac{1}{2}\left[m\sqrt{m^2 + 4} + 4 \ln \left|m + \sqrt{m^2 + 4}\right|\right] + C\right) \\
+&= m\sqrt{m^2 + 4} + 4 \ln \left|m + \sqrt{m^2 + 4}\right| + C
+\end{align}
+\end{problem}
+
+\begin{problem}{25}
+$\displaystyle\int \frac{-5 \ln x}{x^3} ~ dx$
+\begin{align}
+&= -5 \int x^{-3} \ln x ~ dx \\
+&= -5 \left(x^{-3 + 1} \left[\frac{\ln x}{-3 + 1} - \frac{1}{\left(-3 + 1\right)^2}\right] + C\right) \\
+&= -5x^{-2} \left[\frac{\ln x}{-2} - \frac{1}{4}\right] + C \\
+&= \frac{5}{2x^2} \left(\ln x\right) + \frac{5}{4x^2} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{27}
+$\displaystyle\int \frac{e^x}{x^{-3}} ~ dx$
+\begin{align}
+&= \int x^3 e^x ~ dx \\
+&= \frac{x^3 e^x}{1} - \frac{3}{1} \int x^{3-1} e^x ~ dx + C \\
+&= x^3 e^x - 3 \int x^2 e^x ~ dx + C \\
+\int x^{2} e^x ~ dx &=
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{c @{\hspace*{1.0cm}} c}
+D & I \\
+\cmidrule{1-2}
+x^2\tikzmark{D1} & \tikzmark{I1}e^x \\
+2x \tikzmark{D2} & \tikzmark{I2}e^{x} \\      
+2 \tikzmark{D3} & \tikzmark{I3}e^{x} \\      
+0 \tikzmark{D4} & \tikzmark{I4}e^{x}
+\end{array} = x^2 e^x - 2x e^x + 2e^x + C \\
+\int \frac{e^x}{x^{-3}} ~ dx &= x^3 e^x - 3 \left(x^2 e^x - 2xe^x + 2e^x\right) + C \\
+&= x^3 e^x - 3x^2 e^x + 6x e^x - 6e^x + C
+\end{align}
+\DrawArrow{D1}{I2}{$+$}
+\DrawArrow{D2}{I3}{$-$}
+\DrawArrow{D3}{I4}{$+$}
+\end{problem}
+
+\begin{problem}{29}
+$\displaystyle\int x \sqrt{1 + 2x} ~ dx$
+\begin{align}
+&= \frac{2}{15\left(2\right)^2} \left(3\left(2\right)x - 2\left(1\right)\right)\left(1 + 2x\right)^{3/2} + C \\
+&= \frac{2}{60} \cdot 2 \left(3x - 1\right)\left(1 + 2x\right)^{3/2} + C \\
+&= \frac{1}{15} \left(3x - 1\right)\left(1 + 2x\right)^{3/2} + C
+\end{align}
+\end{problem}
+
+\begin{problem}{32}
+$p'(t) = \frac{1}{t(2 + t)^2}, \quad p(2) = 0.8267$
+\begin{align}
+p(t) &= \frac{1}{2(2 + t)} + \frac{1}{4} \ln\left|\frac{t}{2 + t}\right| + C \\
+0.8267 &= \frac{1}{2(2 + (2))} + \frac{1}{4} \ln\left|\frac{(2)}{2 + (2)}\right| + C \\
+C &= \frac{1}{8} + \frac{1}{4} \ln\left|\frac{1}{2}\right| - 0.8267 \\
+&\approx -0.875 \\
+p(t) &= \frac{1}{2(2 + t)} + \frac{1}{4} \ln\left|\frac{t}{2 + t}\right| - 0.875
+\end{align}
+\end{problem}
+
+\begin{problem}{33}
+$\displaystyle\int \frac{8}{3x^2 - 2x} ~ dx$
+\begin{align}
+&= -8 \int \frac{1}{x(2 - 3x)} ~ dx \\
+&= -8 \left(\frac{1}{2} \ln\left|\frac{x}{2 - 3x}\right| + C\right) \\
+&= -4 \ln\left|\frac{x}{2 - 3x}\right| + C
+\end{align}
+\end{problem}
+
+\begin{problem}{35}
+$\displaystyle\int \frac{dx}{x^3 - 4x^2 + 4x}$
+\begin{align}
+&= \int \frac{1}{x(x - 2)^2} ~ dx \\
+&= \frac{-1}{2(x - 2)} + \frac{1}{4} \ln\left|\frac{x}{x - 2}\right| + C
+\end{align}
+\end{problem}
+
+\begin{problem}{37}
+$\displaystyle\int \frac{-e^{-2x} ~ dx}{9 - 6e^{-x} + e^{-2x}}$
+\begin{align}
+&= - \int \frac{e^{-2x} ~ dx}{9 - 6e^{-x} + e^{-2x}} \\
+&= \subu{e^{-x}}{-e^{-x} ~ dx} = \int \frac{u ~ du}{9 - 6u + u^2} \\
+&= \int \frac{u ~ du}{(u - 3)^2} \\
+&= \frac{-3}{1(u - 3)} + \frac{1}{1} \ln\left|u - 3\right| + C \\
+&= \frac{-3}{(e^{-x} - 3)} + \ln\left|e^{-x} - 3\right| + C
+\end{align}
+\end{problem}
+
+\end{document}
