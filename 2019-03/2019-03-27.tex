@@ -291,12 +291,11 @@ $\displaystyle\int x \ln \left(8x\right) ~ dx$
 \begin{problem}{53}
 $\displaystyle\int \frac{dx}{e^x + 2}$
 \begin{align}
-&= \int \frac{1 + e^x}{e^x + 2} - \frac{e^x}{e^x + 2} ~ dx \\
-&= \int \frac{1 + e^x}{e^x + 2} ~ dx - \int \frac{e^x}{e^x + 2} ~ dx \\
-\int \frac{1 + e^x}{e^x + 2} ~ dx &= \int \frac{e^x}{e^x + 2} ~ dx + \int \frac{1}{e^x + 2} ~ dx \\
-\int \frac{e^x}{e^x + 2} ~ dx &= \subu{e^x + 2}{e^x} = \frac{du}{u} \\
-&= \ln \left(e^x + 2\right) \\
-\int \frac{dx}{e^x + 2} &= \int \frac{dx}{e^x + 2}
+&= \subu{e^x + 2}{e^x dx} = \int \frac{1}{u \left(u - 2\right)} du \\
+&= - \frac{1}{2} \ln \left|\frac{u}{-2 + u}\right| \\
+&= - \frac{1}{2} \ln \left|\frac{e^x + 2}{-2 + e^x + 2}\right| \\
+&= - \frac{1}{2} \ln \left|\frac{e^x}{e^x} + \frac{2}{e^x}\right| \\
+&= - \frac{1}{2} \ln \left(1 + 2e^{-x}\right) + C
 \end{align}
 \end{problem}
 
