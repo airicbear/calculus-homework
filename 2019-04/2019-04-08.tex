@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools}
+
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+% --------------------------------------------------
+% CUSTOM COMMANDS
+% -------------------------------------------------- 
+
+\newcommand{\assignment}{Pg. 488 \#17, 19, 21, 25, 27, 39, 43-47 odd, 49-51}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-04-08}
+\newcommand{\details}{\noindent\textbf{\name \\\duedate \\\assignment}}
+
+\newcommand{\descprob}[1]{\hfill\break #1}
+\newcommand{\plugin}[2]{\left(\left({#1}\right) - \left({#2}\right)\right)}
+\newcommand{\setuv}[4]{
+\left[
+\begin{alignedat}{2}
+u &= #1 &\quad v &= #3 \\
+du &= #2 &\quad dv &= #4 \\
+\end{alignedat}
+\right]  = uv - \int v ~ du \\
+&= \intbp{#1}{#3}{#2}
+}
+\newcommand{\subu}[2]{
+\left[
+\begin{alignedat}{1}
+u &= #1 \\
+du &= #2 \\
+\end{alignedat}
+\right] 
+}
+\newcommand{\intbp}[3]{\left(#1\right) \left(#2\right) - \int \left(#2\right) \left(#3\right)}
+\newcommand{\descmeet}{\shortintertext{\quad Find where the graphs meet:}}
+\newcommand{\deschigh}{\shortintertext{\quad Find the graph that is higher between the interval:}}
+\newcommand{\descarea}{\shortintertext{\quad Find the area of the difference of the two graphs between the interval:}}
+
+% --------------------------------------------------  
+% TABULAR INTEGRATION
+% -------------------------------------------------- 
+
+\usepackage{booktabs}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+
+\newcommand{\tikzmark}[1]{%
+    \tikz[overlay, remember picture, baseline] \node (#1) {};%
+}
+
+\newcommand*{\XShift}{0.5em}
+\newcommand*{\YShift}{0.5ex}
+
+\NewDocumentCommand{\DrawArrow}{s O{} m m m}{%
+    \begin{tikzpicture}[overlay,remember picture]
+        \draw[->, thick, Arrow Style, #2] 
+                ($(#3.west)+(\XShift,\YShift)$) -- 
+                ($(#4.east)+(-\XShift,\YShift)$)
+        node [midway,above] {#5};
+    \end{tikzpicture}%
+}
+
+\begin{document}
+
+\details
+
+\begin{problem}{17}
+$\displaystyle\int_0^\infty x e^x ~ dx$
+\begin{align}
+= \underset{b \to \infty}{\lim} \int_0^b xe^{x} ~ dx = 
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{c @{\hspace*{1.0cm}} c}
+D & I \\
+\cmidrule{1-2}
+x \tikzmark{D1} & \tikzmark{I1}e^{x} \\
+1 \tikzmark{D2} & \tikzmark{I2}e^{x} \\
+0 \tikzmark{D3} & \tikzmark{I3}e^{x}
+\end{array} = \underset{b \to \infty}{\lim} \left[x e^{x} - e^{x}\right]_0^b = \text{Divergent}
+\end{align}
+\DrawArrow{D1}{I2}{$+$}
+\DrawArrow{D2}{I3}{$-$}
+\end{problem}
+
+\begin{problem}{19}
+$\displaystyle\int_0^\infty me^{-mx} ~ dx, \, m > 0$
+\begin{align}
+= \underset{b \to \infty}{\lim} \int_0^b me^{-mx} ~ dx = \underset{b \to \infty}{\lim} \left[- e^{-mx}\right]_0^b = \text{Convergent}; 1
+\end{align}
+\end{problem}
+
+\begin{problem}{21}
+$\displaystyle\int_\pi^\infty \frac{dt}{t^{1.001}}$
+\begin{align}
+= \underset{b \to \infty}{\lim} \int_\pi^b t^{-1.001} ~ dt = \underset{b \to \infty}{\lim} \left[- \frac{1000}{t^{0.001}} ~ \right]_\pi^b = \text{Convergent}; \frac{1000}{\pi^{0.001}}
+\end{align}
+\end{problem}
+
+\begin{problem}{25}
+$\displaystyle\int_2^\infty 1 / x^2 ~ dx$
+\begin{align}
+= \underset{b \to \infty}{\lim} \int_2^b x^{-2} ~ dx = \underset{b \to \infty}{\lim} \left[- \frac{1}{x}\right]_2^b = \frac{1}{2}
+\end{align}
+\end{problem}
+
+\begin{problem}{27}
+$\displaystyle\int_0^\infty 2xe^{-x^2} ~ dx$
+\begin{align}
+= \underset{b \to \infty}{\lim} \left[2 \int_0^b xe^{-x^2} ~ dx\right] = \subu{-x^2}{- 2x ~ dx} = \underset{b \to \infty}{\lim} \left[- \frac{1}{e^{x^2}}\right]_0^b = 1
+\end{align}
+\end{problem}
+
+\begin{problem}{39}
+$\underset{T \to \infty}{\lim} \displaystyle\int_0^T e^{0.00003t} ~ dt$
+\begin{align}
+= \underset{T \to \infty}{\lim} \left[\frac{1}{0.00003} \left(1 - e^{-0.00003T}\right)\right] = \frac{1}{0.00003} = 33,333 \frac{1}{3} ~ \text{lb}
+\end{align}
+\end{problem}
+
+\begin{problem}{43}
+$\displaystyle\int_0^\infty \frac{dx}{x^{2/3}}$
+\begin{align}
+= \underset{b \to \infty}{\lim} \int_0^b x^{-2/3} ~ dx = \underset{b \to \infty}{\lim} \left[-3x^{1/3}\right]_0^b = \text{Divergent}
+\end{align}
+\end{problem}
+
+\begin{problem}{45}
+$\displaystyle\int_0^\infty \frac{dx}{\left(x + 1\right)^{3/2}}$
+\begin{align}
+= \underset{b \to \infty}{\lim} \int_0^b \left(x + 1\right)^{-3/2} ~ dx = \subu{x + 1}{dx} = \underset{b \to \infty}{\lim} \left[- \frac{2}{\sqrt{x + 1}}\right]_0^b = \text{Convergent}; 2
+\end{align}
+\end{problem}
+
+\begin{problem}{47}
+$\displaystyle\int_0^\infty xe^{-x^2} ~ dx$
+\begin{align}
+= \underset{b \to \infty}{\lim} \int_0^b xe^{-x^2} ~ dx = \subu{-x^2}{-2x ~ dx} = \underset{b \to \infty}{\lim} \left[- \frac{1}{2e^{x^2}}\right]_0^b = \text{Convergent}; \frac{1}{2}
+\end{align}
+\end{problem}
+
+\begin{problem}{49}
+$\displaystyle\int_0^\infty te^{-kt} ~ dt, \quad k > 0$
+\begin{align}
+&= \underset{b \to \infty}{\lim} \int_0^b te^{-kt} ~ dt = 
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{c @{\hspace*{1.0cm}} c}
+D & I \\
+\cmidrule{1-2}
+t \tikzmark{D1} & \tikzmark{I1}e^{-kt} \\
+1 \tikzmark{D2} & \tikzmark{I2}-\frac{1}{k} e^{-kt} \\
+0 \tikzmark{D3} & \tikzmark{I3}\frac{1}{k^2} e^{-kt}
+\end{array} = \underset{b \to \infty}{\lim} \left[-\frac{t}{ke^{-kt}} - \frac{1}{k^2 e^{-kt}}\right]_0^b = \frac{1}{k^2} \\
+&\text{The integral represents the total drug dosage.}
+\end{align}
+\DrawArrow{D1}{I2}{$+$}
+\DrawArrow{D2}{I3}{$-$}
+\end{problem}
+
+\begin{problem}{50}
+A physician prescribes a dosage of 100 mg. Find $k$.
+\begin{align}
+100 &= \frac{1}{k^2} \\
+k &= \sqrt{\frac{1}{100}}
+\end{align}
+\end{problem}
+
+\begin{problem}{51}
+Consider the functions $y = \frac{1}{x^2}$ and $y = \frac{1}{x}$.
+Suppose that you go to a paint store to buy paint to cover the region under each graph over the interval $[1, \infty)$. Discuss whether you could be successful and why or why not.
+\begin{align}
+\text{I could be successful as both integrals } \int_1^\infty \frac{1}{x^2} ~ dx \text{ and } \int_1^\infty \frac{1}{x} ~ dx \text{ are convergent.}
+\end{align}
+\end{problem}
+
+\end{document}
