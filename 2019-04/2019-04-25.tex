@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools,tikz}
+\usepackage[makeroom]{cancel}
+
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+% --------------------------------------------------
+% CUSTOM COMMANDS
+% -------------------------------------------------- 
+
+\newcommand{\assignment}{Pg. 554 \#1-5 odd, 9-11 odd}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-04-25}
+\newcommand{\details}{\noindent\textbf{\name \\\duedate \\\assignment}}
+
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dv}{\, dv}
+\newcommand{\dt}{\, dt}
+\newcommand{\descprob}[1]{\hfill\break #1}
+\newcommand{\plugin}[2]{\left(\left({#1}\right) - \left({#2}\right)\right)}
+\newcommand{\setuv}[4]{
+\left[
+\begin{alignedat}{2}
+u &= #1 &\quad v &= #3 \\
+du &= #2 &\quad dv &= #4 \\
+\end{alignedat}
+\right]  = uv - \int v ~ du \\
+&= \intbp{#1}{#3}{#2}
+}
+\newcommand{\subu}[2]{
+\left[
+\begin{alignedat}{1}
+u &= #1 \\
+du &= #2 \\
+\end{alignedat}
+\right] 
+}
+\newcommand{\intbp}[3]{\left(#1\right) \left(#2\right) - \int \left(#2\right) \left(#3\right)}
+\newcommand{\descmeet}{\shortintertext{\quad Find where the graphs meet:}}
+\newcommand{\deschigh}{\shortintertext{\quad Find the graph that is higher between the interval:}}
+\newcommand{\descarea}{\shortintertext{\quad Find the area of the difference of the two graphs between the interval:}}
+
+% --------------------------------------------------  
+% TABULAR INTEGRATION
+% -------------------------------------------------- 	
+
+\usepackage{booktabs}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+
+\newcommand{\tikzmark}[1]{%
+    \tikz[overlay, remember picture, baseline] \node (#1) {};%
+}
+
+\newcommand*{\XShift}{0.5em}
+\newcommand*{\YShift}{0.5ex}
+
+\NewDocumentCommand{\DrawArrow}{s O{} m m m}{
+    \begin{tikzpicture}[overlay,remember picture]
+        \draw[->, thick, Arrow Style, #2] 
+                ($(#3.west)+(\XShift,\YShift)$) -- 
+                ($(#4.east)+(-\XShift,\YShift)$)
+        node [midway,above] {#5};
+    \end{tikzpicture}
+}
+
+\begin{document}
+
+\details
+
+\bigskip
+
+\noindent Find $\frac{\partial z}{\partial x}, \frac{\partial z}{\partial y}, \frac{\partial z}{\partial x}\bigg|_{(-2, -3)}$, and $\frac{\partial z}{\partial y}\bigg|_{(0, -5)}$.
+
+\begin{problem}{1}
+    $z = 2x - 3y$
+    \begin{align}
+        \frac{\partial z}{\partial x} &= 2 \\
+        \frac{\partial z}{\partial y} &= -3 \\
+        \frac{\partial z}{\partial x} \bigg|_{(-2, -3)} &= 2 \\
+        \frac{\partial z}{\partial y} \bigg|_{(0, -5)} &= -3
+    \end{align}
+\end{problem}
+
+\begin{problem}{3}
+    $z = 3x^2 - 2xy + y$
+    \begin{align}
+        \frac{\partial z}{\partial x} &= 6x - 2y \\
+        \frac{\partial z}{\partial y} &= -2x + 1 \\
+        \frac{\partial z}{\partial x} \bigg|_{(-2, -3)} &= 6(-2) - 2(-3) = -6 \\
+        \frac{\partial z}{\partial y} \bigg|_{(0, -5)} &= -2(0) + 1 = 1
+    \end{align}
+\end{problem}
+
+\bigskip
+
+\noindent Find $f_x, f_y, f_x(-2, 4)$ and $f_y(4, -3)$.
+
+\begin{problem}{5}
+    $f(x,y) = 2x - 5xy$
+    \begin{align}
+        f_x &= 2 - 5y \\
+        f_y &= -5x \\
+        f_x(-2, 4) &= 2 - 5(4) = -18 \\
+        f_y(4, -3) &= -5(4) = -20
+    \end{align}
+\end{problem}
+
+\bigskip
+
+\noindent Find $f_x$ and $f_y$
+
+\begin{problem}{9}
+    $f(x,y) = e^{2x - y}$
+    \begin{align}
+        f_x &= 2e^{2x - y} \\
+        f_y &= -e^{2x - y}
+    \end{align}
+\end{problem}
+
+\begin{problem}{11}
+    $f(x,y) = e^{xy}$
+    \begin{align}
+        f_x &= ye^{xy} \\
+        f_y &= xe^{xy}
+    \end{align}
+\end{problem}
+
+\end{document}
