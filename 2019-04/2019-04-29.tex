@@ -1,0 +1,227 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools,tikz,gensymb}
+\usepackage[makeroom]{cancel}
+
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+% --------------------------------------------------
+% CUSTOM COMMANDS
+% -------------------------------------------------- 
+
+\newcommand{\assignment}{Pg. 554 \#13, 17, 19, 21, 25, 27, 31, 33, 37, 39, 45, 67}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-04-29}
+\newcommand{\details}{\noindent\textbf{\name \\\duedate \\\assignment}}
+
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dv}{\, dv}
+\newcommand{\dt}{\, dt}
+\newcommand{\descprob}[1]{\hfill\break #1}
+\newcommand{\plugin}[2]{\left(\left({#1}\right) - \left({#2}\right)\right)}
+\newcommand{\setuv}[4]{
+\left[
+\begin{alignedat}{2}
+u &= #1 &\quad v &= #3 \\
+du &= #2 &\quad dv &= #4 \\
+\end{alignedat}
+\right]  = uv - \int v ~ du \\
+&= \intbp{#1}{#3}{#2}
+}
+\newcommand{\subu}[2]{
+\left[
+\begin{alignedat}{1}
+u &= #1 \\
+du &= #2 \\
+\end{alignedat}
+\right] 
+}
+\newcommand{\intbp}[3]{\left(#1\right) \left(#2\right) - \int \left(#2\right) \left(#3\right)}
+\newcommand{\descmeet}{\shortintertext{\quad Find where the graphs meet:}}
+\newcommand{\deschigh}{\shortintertext{\quad Find the graph that is higher between the interval:}}
+\newcommand{\descarea}{\shortintertext{\quad Find the area of the difference of the two graphs between the interval:}}
+
+% --------------------------------------------------  
+% TABULAR INTEGRATION
+% -------------------------------------------------- 	
+
+\usepackage{booktabs}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+
+\newcommand{\tikzmark}[1]{%
+    \tikz[overlay, remember picture, baseline] \node (#1) {};%
+}
+
+\newcommand*{\XShift}{0.5em}
+\newcommand*{\YShift}{0.5ex}
+
+\NewDocumentCommand{\DrawArrow}{s O{} m m m}{
+    \begin{tikzpicture}[overlay,remember picture]
+        \draw[->, thick, Arrow Style, #2] 
+                ($(#3.west)+(\XShift,\YShift)$) -- 
+                ($(#4.east)+(-\XShift,\YShift)$)
+        node [midway,above] {#5};
+    \end{tikzpicture}
+}
+
+\begin{document}
+
+\details
+
+\bigskip
+
+\noindent Find $f_x$ and $f_y$.
+
+\begin{problem}{13}
+    $f(x,y) = y \ln \left(x + 2y\right)$
+    \begin{align}
+        f_x &= \frac{y}{x + 2y} \\
+        f_y &= y \cdot \frac{2}{x + 2y} + \ln \left(x + 2y\right) \\
+            &= \frac{2y}{x + 2y} + \ln \left(x + 2y\right)
+    \end{align}
+\end{problem}
+
+\begin{problem}{17}
+    $f(x,y) = \dfrac{x}{y} - \dfrac{y}{3x}$
+    \begin{align}
+        f_x &= \frac{1}{y} + \frac{y}{3x^2} \\
+        f_y &= -\frac{x}{y^2} - \frac{1}{3x}
+    \end{align}
+\end{problem}
+
+\begin{problem}{19}
+    $f(x,y) = 3(2x + y - 5)^2$
+    \begin{align}
+        f_x &= 2 \cdot 3 \left(2x + y - 5\right) \cdot 2 \\
+            &= 12 \left(2x + y - 5\right) \\
+        f_y &= 2 \cdot 3 \left(2x + y - 5\right) \cdot 1 \\
+            &= 6 \left(2x + y - 5\right)
+    \end{align}
+\end{problem}
+
+\bigskip
+
+\noindent Find $\frac{\partial f}{\partial b}$ and $\frac{\partial f}{\partial m}$.
+
+\begin{problem}{21}
+    $f(b, m) = m^3 + 4m^2 b - b^2 + \left(2m + b - 5\right)^2 + \left(3m + b - 6\right)^2$
+    \begin{align}
+        \frac{\partial f}{\partial b} &= 4m^2 - 2b + 2 \left(2m + b - 5\right) + 2 \left(3m + b - 6\right) \\
+        &= 4m^2 - 2b + 4m + 2b - 10 + 6m + 2b - 12 \\
+        &= 4m^2 + 10m + 2b - 22 \\
+        \frac{\partial f}{\partial m} &= 3m^2 + 8mb + 4 \left(2m + b - 5\right) + 6 \left(3m + b - 6\right) \\
+        &= 3m^2 + 8mb + 8m + 4b - 20 + 18m + 6b - 36 \\
+        &= 3m^2 + 8mb + 10b + 26m - 56
+    \end{align}
+\end{problem}
+
+\clearpage
+
+\noindent Find $f_x$, $f_y$, and $f_\lambda$.
+
+\begin{problem}{25}
+    $f(x,y,\lambda) = x^2 + y^2 - \lambda(10x + 2y - 4)$
+    \begin{align}
+        f_x &= 2x - 10\lambda \\
+        f_y &= 2y - 2\lambda \\
+        f_\lambda &= - \left(10x + 2y - 4\right)
+    \end{align}
+\end{problem}
+
+\bigskip
+
+\noindent Find the four second-order partial derivatives.
+
+\begin{problem}{27}
+    $f(x,y) = 5xy$
+    \begin{align}
+        \frac{\partial^2 f}{\partial x^2} &= \frac{\partial}{\partial x} \left(5y\right) = 0 \\
+        \frac{\partial^2 f}{\partial y \partial x} &= \frac{\partial}{\partial y} \left(5y\right) = 5 \\
+        \frac{\partial^2 f}{\partial x \partial y} &= \frac{\partial}{\partial x} \left(5x\right) = 5 \\
+        \frac{\partial^2 f}{\partial y^2} &= \frac{\partial}{\partial y} \left(5x\right) = 0
+    \end{align}
+\end{problem}
+
+\begin{problem}{31}
+    $f(x,y) = x^5y^4 + x^3y^2$
+    \begin{align}
+        \frac{\partial^2 f}{\partial x^2} &= \frac{\partial}{\partial x} \left(5x^4 y^4 + 3x^2 y^2\right) = 20x^3 y^4 + 6x y^2 \\
+        \frac{\partial^2 f}{\partial y \partial x} &= \frac{\partial}{\partial y} \left(5x^4 y^4 + 3x^2 y^2\right) = 20x^4 y^3 + 6x^2 y \\
+        \frac{\partial^2 f}{\partial x \partial y} &= \frac{\partial}{\partial x} \left(4x^5 y^3 + 2x^3 y\right) = 20x^4 y^3 + 6x^2 y \\
+        \frac{\partial^2 f}{\partial y^2} &= \frac{\partial}{\partial y} \left(4x^5 y^3 + 2x^3 y\right) = 12x^5 y^2 + 2x^3
+    \end{align}
+\end{problem}
+
+\bigskip
+
+\noindent Find $f_{xx}$, $f_{xy}$, $f_{yx}$, and $f_{yy}$.
+
+\begin{problem}{33}
+    $f(x,y) = 2x - 3y$
+    \begin{align}
+        f_{xx} &= \frac{\partial}{\partial x} \left(2\right) = 0 \\
+        f_{xy} &= \frac{\partial}{\partial y} \left(2\right) = 0 \\
+        f_{yx} &= \frac{\partial}{\partial x} \left(-3\right) = 0 \\
+        f_{yy} &= \frac{\partial}{\partial y} \left(-3\right) = 0
+    \end{align}
+\end{problem}
+
+\begin{problem}{37}
+    $f(x,y) = x + e^y$
+    \begin{align}
+        f_{xx} &= \frac{\partial}{\partial x} \left(1\right) = 0 \\
+        f_{xy} &= \frac{\partial}{\partial y} \left(1\right) = 0 \\
+        f_{yx} &= \frac{\partial}{\partial x} \left(e^y\right) = 0 \\
+        f_{yy} &= \frac{\partial}{\partial y} \left(e^y\right) = e^y
+    \end{align}
+\end{problem}
+
+\begin{problem}{39}
+    $f(x,y) = y \ln x$
+    \begin{align}
+        f_{xx} &= \frac{\partial}{\partial x} \left(\frac{y}{x}\right) = - \frac{y}{x^2} \\
+        f_{xy} &= \frac{\partial}{\partial y} \left(\frac{y}{x}\right) = \frac{1}{x} \\
+        f_{yx} &= \frac{\partial}{\partial x} \left(\ln{x}\right) = \frac{1}{x} \\
+        f_{yy} &= \frac{\partial}{\partial y} \left(\ln{x}\right) = 0
+    \end{align}
+\end{problem}
+
+\bigskip
+
+\noindent \textbf{Temperature-humidity heat index.}
+In the summer, humidity interacts with the outdoor temperature, making a person feel hotter due to a reduced heat loss from the skin caused by higher humidity.
+The temperature-humidity index, $T_h$, is what the temperature would have to be with no humidity in order to give the same heat effect.
+One index often used is given by $$T_h = 1.98T - 1.09(1 - H)(T - 58) - 56.9,$$ where $T$ is the air temperature, in degrees Fahrenheit, and $H$ is the relative humidity, expressed as a decimal.
+Find the temperature-humidity index in each case.
+Round to the nearest tenth of a degree.
+
+\begin{problem}{45}
+    $T = 85\degree$ and $H = 60\%$
+    \begin{align}
+        T_h &= 1.98(85\degree) - 1.09(1 - 0.60)(85\degree - 58) - 56.9 \approx 99.6\degree
+    \end{align}
+\end{problem}
+
+\begin{problem}{67}
+    Consider $f(x,y) = \ln \left(x^2 + y^2\right)$. Show that $f$ is a solution to the partial differential equation $\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = 0$.
+    \begin{align}
+        \frac{\partial^2 f}{\partial x^2} &= \frac{\partial}{\partial x} \left(\frac{2x}{x^2 + y^2}\right) = \frac{2\left(x^2 + y^2\right) - 4x^2}{\left(x^2 + y^2\right)^2} = \frac{-2x^2 + 2y^2}{\left(x^2 + y^2\right)^2} \\
+        \frac{\partial^2 f}{\partial y^2} &= \frac{\partial}{\partial y} \left(\frac{2y}{x^2 + y^2}\right) = \frac{2\left(x^2 + y^2\right) - 4y^2}{\left(x^2 + y^2\right)^2} = \frac{2x^2 - 2y^2}{\left(x^2 + y^2\right)^2} \\
+        \frac{-2x^2 + 2y^2}{\left(x^2 + y^2\right)^2} + \frac{2x^2 - 2y^2}{\left(x^2 + y^2\right)^2} &= 0
+    \end{align}
+\end{problem}
+
+\end{document}
