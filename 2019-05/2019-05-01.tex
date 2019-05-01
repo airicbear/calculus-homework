@@ -1,0 +1,346 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools,tikz,gensymb}
+\usepackage[makeroom]{cancel}
+
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+% --------------------------------------------------
+% CUSTOM COMMANDS
+% -------------------------------------------------- 
+
+\newcommand{\assignment}{Pg. 563 \#3, 11, 13, 15, 19, 20, 23}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-05-01}
+\newcommand{\details}{\noindent\textbf{\name \\\duedate \\\assignment}}
+
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dv}{\, dv}
+\newcommand{\dt}{\, dt}
+\newcommand{\descprob}[1]{\hfill\break #1}
+\newcommand{\plugin}[2]{\left(\left({#1}\right) - \left({#2}\right)\right)}
+\newcommand{\setuv}[4]{
+\left[
+\begin{alignedat}{2}
+u &= #1 &\quad v &= #3 \\
+du &= #2 &\quad dv &= #4 \\
+\end{alignedat}
+\right]  = uv - \int v ~ du \\
+&= \intbp{#1}{#3}{#2}
+}
+\newcommand{\subu}[2]{
+\left[
+\begin{alignedat}{1}
+u &= #1 \\
+du &= #2 \\
+\end{alignedat}
+\right] 
+}
+\newcommand{\intbp}[3]{\left(#1\right) \left(#2\right) - \int \left(#2\right) \left(#3\right)}
+\newcommand{\descmeet}{\shortintertext{\quad Find where the graphs meet:}}
+\newcommand{\deschigh}{\shortintertext{\quad Find the graph that is higher between the interval:}}
+\newcommand{\descarea}{\shortintertext{\quad Find the area of the difference of the two graphs between the interval:}}
+
+% --------------------------------------------------  
+% TABULAR INTEGRATION
+% -------------------------------------------------- 	
+
+\usepackage{booktabs}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+
+\newcommand{\tikzmark}[1]{%
+    \tikz[overlay, remember picture, baseline] \node (#1) {};%
+}
+
+\newcommand*{\XShift}{0.5em}
+\newcommand*{\YShift}{0.5ex}
+
+\NewDocumentCommand{\DrawArrow}{s O{} m m m}{
+    \begin{tikzpicture}[overlay,remember picture]
+        \draw[->, thick, Arrow Style, #2] 
+                ($(#3.west)+(\XShift,\YShift)$) -- 
+                ($(#4.east)+(-\XShift,\YShift)$)
+        node [midway,above] {#5};
+    \end{tikzpicture}
+}
+
+\begin{document}
+
+\details
+
+\bigskip
+
+\noindent Find the relative maximum and minimum values
+
+\begin{problem}{1}
+    $f(x, y) = x^2 + xy + y^2 - y$
+    \begin{align*}
+        \shortintertext{Step 1}
+        f_x &= 2x + y & f_y &= x + 2y - 1 & f_{xy} &= 1 \\
+        f_{xx} &= 2 & f_{yy} &= 2 
+    \end{align*}
+    \begin{align}
+        \shortintertext{Step 2}
+        2x + y &= 0 \Rightarrow y = -2x \\
+        x + 2y &= 1 \Rightarrow x + 2(-2x) = 1 \\
+        &\phantom{=. 0} \Rightarrow x - 4x = 1 \\
+        &\phantom{=. 0} \Rightarrow x = -\frac{1}{3} \\
+        &\phantom{=. 0} \Rightarrow y = -2 \left(-\frac{1}{3}\right) = \frac{2}{3}
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 3}
+        D &= f_{xx} \left(-\frac{1}{3}, \frac{2}{3}\right) \cdot f_{yy} \left(-\frac{1}{3}, \frac{2}{3}\right) - \left[f_{xy} \left(-\frac{1}{3}, \frac{2}{3}\right)\right]^2 \\
+        &= 2 \cdot 2 - 1^2 = 3
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 4}
+        &f \left(-\frac{1}{3}, \frac{2}{3}\right) = \left(-\frac{1}{3}\right)^2 + \left(-\frac{1}{3}\right) \left(\frac{2}{3}\right) + \left(\frac{2}{3}\right)^2 - \left(\frac{2}{3}\right) = -\frac{1}{3} \\
+        &f \text{ has a minimum } -\frac{1}{3} \text{ at } \left(-\frac{1}{3}, \frac{2}{3}\right), \text{ since } D > 0 \text{ and } f_{xx} \left(-\frac{1}{3}, \frac{2}{3}\right) > 0. \\
+    \end{align}
+\end{problem}
+
+\begin{problem}{3}
+    $f(x, y) = 2xy - x^3 - y^2$
+    \begin{align*}
+        \shortintertext{Step 1}
+        f_x &= 2y - 3x^2 & f_y &= 2x - 2y & f_{xy} &= 2 \\
+        f_{xx} &= -6x & f_{yy} &= -2
+    \end{align*}
+    \begin{align}
+        \shortintertext{Step 2}
+        2x - 2y &= 0 \Rightarrow -2y = -2x \Rightarrow y = x \\
+        2y - 3x^2 &= 0 \Rightarrow 2x - 3x^2 = 0 \Rightarrow x \left(2 - 3x\right) = 0 \Rightarrow x = 0 \text{ or } x = \frac{2}{3}
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 3}
+        D &= f_{xx} \left(0, 0\right) \cdot f_{yy} \left(0, 0\right) - \left[f_{xy} \left(0, 0\right)\right]^2 = 0 \cdot 0 - \left[2\right]^2 = -4 \\
+        D &= f_{xx} \left(\frac{2}{3}, \frac{2}{3}\right) \cdot f_{yy} \left(\frac{2}{3}, \frac{2}{3}\right) - \left[f_{xy} \left(\frac{2}{3}, \frac{2}{3}\right)\right]^2 = 0 \cdot 0 - \left[2\right]^2 = -4 
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 4}
+        &f\left(0, 0\right) = 0; \quad f\left(\frac{2}{3},\frac{2}{3}\right) = \frac{4}{27}; \quad f\left(\frac{2}{3},\frac{2}{3}\right) > f\left(0, 0\right) \\
+        &f \text{ has a maximum of } \frac{4}{27} \text{ at} \left(\frac{2}{3},\frac{2}{3}\right), \text{ since } D > 0 \text{ and } f_{xx} \left(\frac{2}{3},\frac{2}{3}\right) < 0.
+    \end{align}
+\end{problem}
+
+\begin{problem}{11}
+    $f(x, y) = 4x^2 - y^2$
+    \begin{align*}
+        \shortintertext{Step 1}
+        f_x &= 8x & f_y &= -2y & f_{xy} &= 0 \\
+        f_{xx} &= 8 & f_{yy} &= -2
+    \end{align*}
+    \begin{align}
+        \shortintertext{Step 2}
+        8x &= 0 \Rightarrow x = 0 \\
+        -2y &= 0 \Rightarrow y = 0 
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 3}
+        D &= f_{xx} \left(0, 0\right) \cdot f_{yy} \left(0, 0\right) - \left[f_{xy} \left(0, 0\right)\right]^2 \\
+        &= 8 \cdot -2 = -16
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 4}
+        f \text{ has a saddle point at } (0, 0), \text{ since } D < 0.
+    \end{align}
+\end{problem}
+
+\begin{problem}{13}
+    $f(x, y) = e^{x^2 + y^2 + 1}$
+    \begin{align*}
+        \shortintertext{Step 1}
+        f_x &= 2x e^{x^2 + y^2 + 1} & f_y &= 2y e^{x^2 + y^2 + 1} & f_{xy} &= 4xy e^{x^2 + y^2 + 1} \\
+        f_{xx} &= 2e^{x^2 + y^2 + 1} \left(2x^2 + 1\right) & f_{yy} &= 2e^{x^2 + y^2 + 1} \left(2y^2 + 1\right)
+    \end{align*}
+    \begin{align}
+        \shortintertext{Step 2}
+        2e^{x^2 + y^2 + 1} \left(2x^2 + 1\right) &= 0 \Rightarrow x = 0 \\
+        2e^{x^2 + y^2 + 1} \left(2y^2 + 1\right) &= 0 \Rightarrow y = 0
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 3}
+        D &= f_{xx} \left(0, 0\right) \cdot f_{yy} \left(0, 0\right) - \left[f_{xy} \left(0, 0\right)\right]^2 \\
+        &= 2e \cdot 2e - \left[0\right]^2 = 4e
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 4}
+        &f(0, 0) = e^{0^2 + 0^2 + 1} = e \\
+        &f \text{ has a minimum } e \text{ at } (0, 0), \text{ since } D > 0 \text{ and } f_{xx} (0, 0) > 0. \\
+    \end{align}
+\end{problem}
+
+\begin{problem}{15}
+    \textbf{Maximizing profit.}
+    Safe Shades produces two kinds of sunglasses; one kind sells for \$17, and the other for \$21.
+    The total revenue in thousands of dollars from the sale of $x$ thousand sunglasses at \$17 each and $y$ thousand at \$21 each is given by $$R(x,y) = 17x + 21y.$$
+    The company determines that the total cost, in thousands of dollars, of producing $x$ thousand of the \$17 sunglasses and $y$ thousand of the \$21 sun glasses is given by $$C(x,y) = 4x^2 - 4xy + 2y^2 - 11x + 25y - 3.$$
+    Find the number of each type of sunglasses that must be produced and sold in order to maximize profit.
+    \begin{align}
+        P(x, y) &= R(x,y) - C(x,y) = 17x + 21y - \left(4x^2 - 4xy + 2y^2 - 11x + 25y - 3\right) \\
+        &= 17x + 21y - 4x^2 + 4xy - 2y^2 + 11x - 25y + 3 \\
+        &= -4x^2 + 4xy - 2y^2 + 28x - 4y + 3
+    \end{align}
+    \begin{align*}
+        \shortintertext{Step 1}
+        P_x &= -8x + 4y + 28 & P_y &= 4x - 4y - 4 & P_{xy} &= 4 \\
+        P_{xx} &= -8 & P_{yy} &= -4
+    \end{align*}
+    \begin{align}
+        \shortintertext{Step 2}
+        4x - 4y &= 4 \Rightarrow 4x = 4 + 4y \Rightarrow x = 1 + y \\
+        -8x + 4y &= -28 \Rightarrow -8 \left(1 + y\right) + 4y = -28 \\
+        &\phantom{=: -28} \Rightarrow -8 - 8y + 4y = -28 \\
+        &\phantom{=: -28} \Rightarrow -4y = -20 \\
+        &\phantom{=: -28} \Rightarrow y = 5 \\
+        4x - 20 &= 4 \phantom{.28} \Rightarrow x = 6
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 3}
+        D &= P_{xx} \left(5, 6\right) \cdot P_{yy} \left(5, 6\right) - \left[P_{xy} \left(5, 6\right)\right]^2 \\
+        &= -8 \cdot -4 - \left[4\right]^2 = 16
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 4}
+        &P (5,6) = -4(5)^2 + 4(5)(6) - 2(6)^2 + 28(5) - 4(6) + 3 = 67 \\
+        &P \text{ has a maximum } 67 \text{ at } (6, 5), \text{ since } D > 0 \text{ and } P_{xx} < 0. 
+    \end{align}
+        Safe Shades must produce 6 thousand \$17 and 5 thousand \$21 sunglasses to maximize profit.
+\end{problem}
+
+\bigskip
+
+\begin{problem}{19}
+    \textbf{Minimizing the cost of a container.}
+    A trash company is designing an open-top, rectangular container that will have a volume of 320 ft$^3$.
+    The cost of making the bottom of the container is \$5 per square foot, and the cost of the sides is \$4 per square floor.
+    Find the dimensions of the container that will minimize total cost.
+    (\textit{Hint:} Make a substitution using the formula for volume.)
+    \begin{align}
+        320 &= xyz \\
+        z &= \frac{320}{xy} \\
+        C(x,y,z) &= 5xy + 8yz + 8xz \\
+        &= 5xy + 8y \left(\frac{320}{xy}\right) + 2x \left(\frac{320}{xy}\right) \\
+        &= 5xy + \frac{2560}{x} + \frac{2560}{y}
+    \end{align}
+    \begin{align*}
+        \shortintertext{Step 1}
+        C_x &= 5y - \frac{2560}{x^2} & C_y &= 5x - \frac{2560}{y^2} & C_{xy} &= 5 \\
+        C_{xx} &= \frac{5120}{x^3} & C_{yy} &= \frac{2560}{y^3}
+    \end{align*}
+    \begin{align}
+        \shortintertext{Step 2}
+        5y - \frac{2560}{x^2} &= 0 \Rightarrow y = \frac{512}{x^2} \\
+        5x - \frac{2560}{y^2} &= 0 \Rightarrow 5x - \frac{2560}{\left(\frac{512}{x^2}\right)^2} = 0 \\
+        &\phantom{=. 0} \Rightarrow 5x = \frac{2560}{\left(\frac{512}{x^2}\right)^2} \\
+        &\phantom{=. 0} \Rightarrow x \left(\frac{512}{x^2}\right)^2 = 512 \\
+        &\phantom{=. 0} \Rightarrow 262144 = 512x^3 \\
+        &\phantom{=. 0} \Rightarrow x = \sqrt[3]{512} = 8 \\
+        &\phantom{=. 0} \Rightarrow y = \frac{512}{\left(8\right)^2} = 8
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 3}
+        D &= C_{xx} \left(8, 8\right) \cdot C_{yy} \left(8, 8\right) - \left[C_{xy} \left(8, 8\right)\right]^2 = 75
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 4}
+        320 &= 8 \cdot 8 \cdot z \Rightarrow z = 5 \\
+        C\left(8, 8, 5\right) &\approx \$720
+    \end{align}
+        The dimensions 8x8 on the bottom and height of 5 ft will minimize the cost to \$720.
+\end{problem}
+
+\clearpage
+
+\begin{problem}{20}
+    \textbf{Two-variable revenue maximization.}
+    Boxowitz, Inc., a computer firm, markets two kinds of calculator that compete with one another.
+    Their demand functions are expressed by the following relationships:
+    $$q_1 = 78 - 6p_1 - 3p_2, \qquad (1)$$
+    $$q_2 = 66 - 3p_1 - 6p_2, \qquad (2)$$
+    where $p_1$ and $p_2$ are the prices of the calculators, in multiples of \$10, and $q_1$ and $q_2$ are the quantities of the calculators demanded, in hundreds of units.
+    \\
+    \textbf{a)}
+    Find a formula for the total-revenue function, $R$, in terms of the variables $p_1$ and $p_2$. [\textit{Hint:} $R = p_1 q_1 + p_2 q_2$; then substitute expressions from equations (1) and (2) to find $R(p_1, p_2)$.] 
+    \\
+    \textbf{b)}
+    What prices $p_1$ and $p_2$ should be charged for each product in order to maximize total revenue?
+    \\
+    \textbf{c)}
+    How many units will be demanded?
+    \\
+    \textbf{d)}
+    What is the maximum total revenue?
+    \begin{align}
+        \shortintertext{a)}
+        R\left(p_1, p_2\right) &= p_1 \left(78 - 6p_1 - 3p_2\right) + p_2 \left(66 - 3p_1 - 6p_2\right) \\
+        &= 78p_1 - 6{p_1}^2 - 3p_2p_1 + 66p_2 - 3p_1p_2 - 6{p_2}^2 \\
+        &= -6{p_1}^2 + 78p_1 - 6p_1p_2 + 66p_2 - 6{p_2}^2
+    \end{align}
+    \begin{align*}
+        \shortintertext{b)}
+        R_{p_1} &= -12p_1 + 78 - 6p_2 & R_{p_2} &= -12p_2 + 66 - 6p_1 & R_{p_1p_2} &= -6 \\
+        R_{p_1p_1} &= -12 & R_{p_2p_2} &= -12
+    \end{align*}
+    \begin{align}
+        12p_1 + 6p_2 &= 78 \Rightarrow p_2 = \frac{78 - 12p_1}{6} \Rightarrow 13 - 2p_1 \\
+        6p_1 + 12p_2 &= 66 \Rightarrow 6p_1 + 12 \left(13 - 2p_1\right) = 66 \\
+        &\phantom{=: 66} \Rightarrow 6p_1 + 156 - 24p_1 = 66 \\
+        &\phantom{=: 66} \Rightarrow -18p_1 = -90 \\
+        &\phantom{=: 66} \Rightarrow p_1 = 5 \\
+        12(5) + 6p_2 &= 78 \Rightarrow p_2 = 3
+    \end{align}
+    \begin{align}
+        \shortintertext{c)}
+        q_1 &= 78 - 6(5) - 3(3) = 39 \\ 
+        q_2 &= 66 - 3(5) - 6(3) = 33 \\
+        q_1 + q_2 &= 39 + 33 = 72
+    \end{align}
+    \begin{align}
+        \shortintertext{d)}
+        R(5,3) = 294
+    \end{align}
+\end{problem}
+
+\bigskip
+
+\noindent Find the relative maximum and minimum values and the saddle points.
+
+\begin{problem}{23}
+    $f(x,y) = e^x + e^y - e^{x + y}$
+    \begin{align*}
+        \shortintertext{Step 1}
+        f_x &= e^x - e^{x+y} & f_y &= e^y - e^{x+y} & f_{xy} &= -e^{x+y} \\
+        f_{xx} &= e^x - e^{x+y} & f_{yy} &= e^y - e^{x+y}
+    \end{align*}
+    \begin{align}
+        \shortintertext{Step 2}
+        e^x - e^{x+y} &= 0 \Rightarrow x + y = \ln e^x \Rightarrow y = \ln \left(e^x\right) - x \\
+        e^y - e^{x+y} &= 0 \Rightarrow e^{\ln\left(e^x\right) - x} - e^{x + \ln\left(e^x\right) - x} = 0 \Rightarrow x = 0 \\
+        y &= \ln\left(e^0\right) - 0 = 0
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 3}
+        D &= f_{xx} \left(0,0\right) \cdot f_{yy} \left(0,0\right) - \left[f_{xy} \left(0,0\right)\right]^2 \\
+        &= 0 \cdot 0 - \left[-1\right]^2 = -1
+    \end{align}
+    \begin{align}
+        \shortintertext{Step 4}
+        f \text{ has a saddle point at } (0,0), \text{ since } D < 0.
+    \end{align}
+\end{problem}
+
+\end{document}
