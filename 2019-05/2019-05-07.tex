@@ -1,0 +1,246 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb,amsfonts,mathtools,tikz,gensymb}
+\usepackage[makeroom]{cancel}
+
+\newenvironment{problem}[2][]{
+    \begin{trivlist}
+        \item[
+            {\bfseries #1}
+            {\bfseries #2.}
+        ]
+}{\end{trivlist}}
+
+\pagenumbering{gobble}
+
+% --------------------------------------------------
+% CUSTOM COMMANDS
+% -------------------------------------------------- 
+
+\newcommand{\assignment}{Pg. 584 \#5-15 odd, 17-18, 21, 23}
+\newcommand{\name}{Eric Nguyen}
+\newcommand{\duedate}{2019-05-07}
+\newcommand{\details}{\noindent\textbf{\name \\\duedate \\\assignment}}
+
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dv}{\, dv}
+\newcommand{\dt}{\, dt}
+\newcommand{\descprob}[1]{\hfill\break #1}
+\newcommand{\plugin}[2]{\left(\left({#1}\right) - \left({#2}\right)\right)}
+\newcommand{\setuv}[4]{
+\left[
+\begin{alignedat}{2}
+u &= #1 &\quad v &= #3 \\
+du &= #2 &\quad dv &= #4 \\
+\end{alignedat}
+\right]  = uv - \int v ~ du \\
+&= \intbp{#1}{#3}{#2}
+}
+\newcommand{\subu}[2]{
+\left[
+\begin{alignedat}{1}
+u &= #1 \\
+du &= #2 \\
+\end{alignedat}
+\right] 
+}
+\newcommand{\intbp}[3]{\left(#1\right) \left(#2\right) - \int \left(#2\right) \left(#3\right)}
+\newcommand{\descmeet}{\shortintertext{\quad Find where the graphs meet:}}
+\newcommand{\deschigh}{\shortintertext{\quad Find the graph that is higher between the interval:}}
+\newcommand{\descarea}{\shortintertext{\quad Find the area of the difference of the two graphs between the interval:}}
+
+% --------------------------------------------------  
+% TABULAR INTEGRATION
+% -------------------------------------------------- 	
+
+\usepackage{booktabs}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\tikzset{Arrow Style/.style={text=black, font=\boldmath}}
+
+\newcommand{\tikzmark}[1]{%
+    \tikz[overlay, remember picture, baseline] \node (#1) {};%
+}
+
+\newcommand*{\XShift}{0.5em}
+\newcommand*{\YShift}{0.5ex}
+
+\NewDocumentCommand{\DrawArrow}{s O{} m m m}{
+    \begin{tikzpicture}[overlay,remember picture]
+        \draw[->, thick, Arrow Style, #2] 
+                ($(#3.west)+(\XShift,\YShift)$) -- 
+                ($(#4.east)+(-\XShift,\YShift)$)
+        node [midway,above] {#5};
+    \end{tikzpicture}
+}
+
+\begin{document}
+
+\details
+
+\bigskip
+
+\noindent Evaluate.
+
+\begin{problem}{5}
+    $\displaystyle\int_0^5 \displaystyle\int_{-2}^{-1} \left(3x + y\right) dx \, dy$
+    \begin{align}
+        &= \int_0^5 \left[\frac{3x^2}{2} + xy\right]_{-2}^{-1} dy \\
+        &= \int_0^5 \left[\left(\frac{3\left(-1\right)^2}{2} + \left(-1\right)y\right) - \left(\frac{3\left(-2\right)^2}{2} + \left(-2\right)y\right)\right] dy \\
+        &= \int_0^5 \left[\frac{3}{2} - y - \frac{12}{2} + 2y\right] dy \\
+        &= \int_0^5 \left[y - \frac{9}{2}\right] dy \\
+        &= \left[\frac{y^2}{2} - \frac{9y}{2}\right]_0^5 \\
+        &= \left(\frac{\left(5\right)^2}{2} - \frac{9\left(5\right)}{2}\right) - \left(\frac{\left(0\right)^2}{2} - \frac{9\left(0\right)}{2}\right) \\
+        &= \frac{25}{2} - \frac{45}{2} = -\frac{20}{2} = -10
+    \end{align}
+\end{problem}
+
+\begin{problem}{7}
+    $\displaystyle\int_{-1}^1 \displaystyle\int_x^1 xy \, dy \, dx$
+    \begin{align}
+        &= \int_{-1}^1 \left[\frac{xy^2}{2}\right]_x^1 dx \\
+        &= \int_{-1}^1 \left[\frac{y^2}{2} - \frac{xy^2}{2}\right] dx \\
+        &= y^2 \int_{-1}^1 \left[\frac{1}{2} - \frac{x}{2}\right] dx \\
+        &= y^2 \left[\frac{x}{2} - \frac{x^2}{4}\right]_{-1}^1 \\
+        &= \frac{y^2}{2} \left[x - \frac{x^2}{2}\right]_{-1}^1 \\
+        &= \frac{y^2}{2} \left[1 - \frac{1}{2} - 1 + \frac{1}{2}\right] \\
+        &= \frac{y^2}{2} \left(0\right) \\
+        &= 0
+    \end{align}
+\end{problem}
+
+\begin{problem}{9}
+    $\displaystyle\int_0^1 \displaystyle\int_{x^2}^x \left(x + y\right) dy \, dx$
+    \begin{align}
+        &= \int_0^1 \left[xy + \frac{y^2}{2}\right]_{x^2}^x dx \\
+        &= \int_0^1 \left[x\left(x\right) + \frac{\left(x\right)^2}{2} - x\left(x^2\right) - \frac{\left(x^2\right)^2}{2}\right] dx \\
+        &= \int_0^1 \left[x^2 + \frac{x^2}{2} - x^3 - \frac{x^4}{2}\right] dx \\
+        &= \left[\frac{x^3}{3} + \frac{x^3}{6} - \frac{x^4}{4} - \frac{x^5}{10}\right]_0^1 \\
+        &= \frac{1}{3} + \frac{1}{6} - \frac{1}{4} - \frac{1}{10} \\
+        &= \frac{20}{60} + \frac{10}{60} - \frac{15}{60} - \frac{6}{60} \\
+        &= \frac{9}{60} \\
+        &= \frac{3}{20}
+    \end{align}
+\end{problem}
+
+\begin{problem}{11}
+    $\displaystyle\int_0^1 \displaystyle\int_1^{e^x} \frac{1}{y} \, dy \, dx$
+    \begin{align}
+        &= \int_0^1 \left[\ln \left|y\right|\right]_1^{e^x} dx \\
+        &= \int_0^1 \left[\ln \left|e^x\right| - \ln \left|1\right|\right] dx \\
+        &= \int_0^1 x \, dx \\
+        &= \frac{x^2}{2} \bigg|_0^1 \\
+        &= \frac{1}{2}
+    \end{align}
+\end{problem}
+
+\clearpage
+
+\begin{problem}{13}
+    $\displaystyle\int_0^2 \displaystyle\int_0^x \left(x + y^2\right) dy \, dx$
+    \begin{align}
+        &= \int_0^2 \left[xy + \frac{y^3}{3}\right]_0^x dx \\
+        &= \int_0^2 \left[x^2 + \frac{x^3}{3}\right] dx \\
+        &= \left[\frac{x^3}{3} + \frac{x^4}{12}\right]_0^2 \\
+        &= \frac{2^3}{3} + \frac{2^4}{12} \\
+        &= \frac{8}{3} + \frac{16}{12} \\
+        &= \frac{32}{12} + \frac{16}{12} \\
+        &= \frac{48}{12} \\
+        &= 4
+    \end{align}
+\end{problem}
+
+\begin{problem}{15}
+    Find the volume of the solid capped by the surface $z = 1 - y - x^2$ over the region bounded on the $xy$-plane by $y = 1 - x^2$, $y = 0$, $x = 0$, and $x = 1$, by evaluating the integral $$\int_0^1 \int_0^{1 - x^2} \left(1 - y - x^2\right) dy \, dx.$$
+    \begin{align}
+        &= \int_0^1 \left[y - \frac{y^2}{2} - x^2 y\right]_0^{1 - x^2} dx \\
+        &= \int_0^1 \left[\left(1 - x^2\right) - \frac{\left(1 - x^2\right)^2}{2} - x^2 \left(1 - x^2\right)\right] dx \\
+        &= \int_0^1 \left[1 - x^2 - \frac{1 - 2x^2 + x^4}{2} - x^2 + x^4\right] dx \\
+        &= \int_0^1 \left[1 - x^2 - \frac{1}{2} + x^2 - \frac{x^4}{2} - x^2 + x^4\right] dx \\
+        &= \int_0^1 \left[\frac{1}{2} - x^2 + \frac{x^4}{2}\right] dx \\
+        &= \left[\frac{x}{2} - \frac{x^3}{3} + \frac{x^5}{10}\right]_0^1 \\
+        &= \frac{1}{2} - \frac{1}{3} + \frac{1}{10} \\
+        &= \frac{15}{30} - \frac{10}{30} + \frac{3}{30} \\
+        &= \frac{4}{15}
+        \end{align}
+\end{problem}
+
+\noindent For Exercises 17 and 18, suppose that a continuous random variable has a joint probability density function given by $$f(x,y) = x^2 + \frac{1}{3} xy, \quad
+0 \leq x \leq 1, \quad 0 \leq y \leq 2.$$
+
+\begin{problem}{17}
+    $\displaystyle\int_0^2 \displaystyle\int_0^1 f\left(x,y\right) dx \, dy$
+    \begin{align}
+        &= \int_0^2 \left[\frac{x^3}{3} + \frac{1}{6} x^2 y\right]_0^1 dy \\
+        &= \frac{1}{3} \int_0^2 \left[1 + \frac{1}{2} y\right] dy \\
+        &= \frac{1}{3} \left[y + \frac{1}{4} y^2\right]_0^2 \\
+        &= \frac{1}{3} \left[2 + \frac{1}{4} \left(2\right)^2\right] \\
+        &= \frac{1}{3} \left[2 + 1\right] \\
+        &= 1
+    \end{align}
+\end{problem}
+
+\begin{problem}{18}
+    Find the probability that a point $(x, y)$ is in the region bounded by $0 \leq x \leq \frac{1}{2}, 1 \leq y \leq 2$, by evaluating the integral $$\int_1^2 \int_0^{1/2} f(x,y) \, dx \, dy.$$
+    \begin{align}
+        &= \frac{1}{3} \int_1^2 \left[x^3 + \frac{1}{2}\right]_0^{1/2} dy \\
+        &= \frac{1}{3} \int_1^2 \left[\left(\frac{1}{2}\right)^3 + \frac{1}{2}\right] dy \\
+        &= \frac{1}{3} \int_1^2 \left[\frac{1}{8} + \frac{4}{8}\right] dy \\
+        &= \frac{1}{3} \int_1^2 \frac{5}{8} \, dy \\
+        &= \frac{1}{3} \left[\frac{5y}{8}\right]_1^2 \\
+        &= \frac{1}{3} \left[\frac{10}{8} - \frac{5}{8}\right] \\
+        &= \frac{5}{24}
+    \end{align}
+\end{problem}
+
+\clearpage
+
+\noindent A triple iterated integral such as $$\int_r^s \int_c^d \int_a^b f (x, y, z) \, dx \, dy \, dz$$ is evaluated in much the same way as a double iterated integral.
+We first evaluate the inside $x$-integral, treating $y$ and $z$ as constants.
+Then we evaluate the middle $y$-integral, treating $z$ as a constant.
+Finally, we evaluate the outside $z$-integral.
+Evaluate these triple integrals.
+
+\begin{problem}{21}
+    $\displaystyle\int_0^1 \displaystyle\int_1^3 \displaystyle\int_{-1}^2 \left(2x + 3y - z\right) dx \, dy \, dz$
+    \begin{align}
+        &= \int_0^1 \int_1^3 \left[x^2 + 3xy - xz\right]_{-1}^2 dy \, dz \\
+        &= \int_0^1 \int_1^3 \left[\left(2\right)^2 + 3 \left(2\right) y - \left(2\right) z - \left(-1\right)^2 - 3 \left(-1\right) y + \left(-1\right) z\right] dy \, dz \\
+        &= \int_0^1 \int_1^3 \left[4 + 6y - 2z - 1 + 3y - z\right] dy \, dz \\
+        &= \int_0^1 \int_1^3 \left[9y - 3z + 3\right] dy \, dz \\
+        &= \int_0^1 \left[\frac{9y^2}{2} - 3yz + 3y\right]_1^3 dz \\
+        &= \int_0^1 \left[\frac{9 \left(3\right)^2}{2} - 3 \left(3\right) z + 3 \left(3\right) - \frac{9 \left(1\right)^2}{2} + 3 \left(1\right) z - 3 \left(1\right)\right] dz \\
+        &= \int_0^1 \left[\frac{81}{2} - 9z + 9 - \frac{9}{2} + 3z - 3\right] dz \\
+        &= \int_0^1 \left[-6z + 42\right] dz \\
+        &= \left[-3z^2 + 42z\right]_0^1 \\
+        &= -3 \left(1\right)^2 + 42 \left(1\right) \\
+        &= -3 + 42 \\
+        &= 39
+    \end{align}
+\end{problem}
+
+\begin{problem}{23}
+    $\displaystyle\int_0^1 \displaystyle\int_0^{1 - x} \displaystyle\int_0^{2 - x} xyz \, dz \, dy \, dx$
+    \begin{align}
+        &= \int_0^1 \int_0^{1 - x} \left[\frac{xyz^2}{2}\right]_0^{2 - x} dy \, dx \\
+        &= \frac{1}{2} \int_0^1 \int_0^{1 - x} \left[xy \left(2 - x\right)^2\right] dy \, dx \\
+        &= \frac{1}{2} \int_0^1 \int_0^{1 - x} \left[xy \left(2 - x\right) \left(2 - x\right)\right] dy \, dx \\
+        &= \frac{1}{2} \int_0^1 \int_0^{1 - x} \left[xy \left(4 - 4x + x^2\right)\right] dy \, dx \\
+        &= \frac{1}{2} \int_0^1 \int_0^{1 - x} \left[4xy - 4x^2y + x^3y\right] dy \, dx \\
+        &= \frac{1}{2} \int_0^1 \left[2xy^2 - 2x^2y^2 + \frac{x^3y^2}{2}\right]_0^{1 - x} dx \\
+        &= \frac{1}{2} \int_0^1 \left[2x\left(1 - x\right)^2 - 2x^2\left(1 - x\right)^2 + \frac{x^3\left(1 - x\right)^2}{2}\right] dx \\
+        &= \frac{1}{2} \int_0^1 \left[2x \left(1 - x\right) \left(1 - x\right) - 2x^2 \left(1 - x\right) \left(1 - x\right) + \frac{x^3 \left(1 - x\right) \left(1 - x\right)}{2}\right] dx \\
+        &= \frac{1}{2} \int_0^1 \left[2x \left(1 - 2x + x^2\right) - 2x^2 \left(1 - 2x + x^2\right) + \frac{x^3 \left(1 - 2x + x^2\right)}{2}\right] dx \\
+        &= \frac{1}{2} \int_0^1 \left[2x - 4x^2 + 2x^3 - 2x^2 + 4x^3 - 2x^4 + \frac{x^3 - 2x^4 + x^5}{2}\right] dx \\
+        &= \frac{1}{2} \left[x^2 - \frac{4x^3}{3} + \frac{x^4}{2} - \frac{2x^3}{3} + x^4 - \frac{2x^5}{5} + \frac{x^4}{8} - \frac{x^5}{5} + \frac{x^6}{12}\right]_0^1 \\
+        &= \frac{1}{2} \left[1 - \frac{4}{3} + \frac{1}{2} - \frac{2}{3} + 1 - \frac{2}{5} + \frac{1}{8} - \frac{1}{5} + \frac{1}{12}\right] \\
+        &= \frac{1}{2} \left[\frac{240}{240} - \frac{320}{240} + \frac{120}{240} - \frac{160}{240} + \frac{240}{240} - \frac{96}{240} + \frac{30}{240} - \frac{48}{240} + \frac{20}{240}\right] \\
+        &= \frac{1}{2} \left[\frac{26}{240}\right] \\
+        &= \frac{13}{240}
+    \end{align}
+\end{problem}
+
+\end{document}
